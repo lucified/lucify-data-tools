@@ -1,0 +1,39 @@
+{
+  "name": "lucify-data-tools",
+  "version": "0.1.0",
+  "description": "Tools for data manipulation",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "MIT",
+  "homepage": "https://github.com/lucified/lucify-data-tools",
+  "contributors": [
+    {
+      "name": "Juho Ojala",
+      "email": "juho@lucify.com"
+    },
+    {
+      "name": "Ville Saarinen",
+      "email": "ville.saarinen@lucify.com"
+    },
+    {
+      "name": "Ville Väänänen",
+      "email": "ville@lucify.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucified/lucify-data-tools.git"
+  },
+  "dependencies": {
+    "js-combinatorics": "^0.5.0",
+    "lodash": "^4.5.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "deepcopy": "^0.6.1",
+    "mocha": "^2.4.5"
+  }
+}
