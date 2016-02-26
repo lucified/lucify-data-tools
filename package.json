@@ -1,6 +1,6 @@
 {
   "name": "lucify-data-tools",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Tools for data manipulation",
   "main": "index.js",
   "scripts": {
