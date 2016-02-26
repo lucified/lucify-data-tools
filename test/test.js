@@ -2,8 +2,8 @@
 var expect = require('chai').expect;
 var _ = require('lodash');
 var deepcopy = require('deepcopy');
-
 var tools = require('../index.js');
+var moment = require('moment');
 
 
 var properties = [
@@ -154,5 +154,95 @@ describe('span', () => {
     expect(tools.span(arr, item => item.b)[1]).to.equal(8);
   });
 });
+
+
+
+
+describe('weekIndex', function() {
+
+  this.timeout(1000*120);
+
+  function checkDate(date) {
+    var index = tools.dateToWeekIndex(date);
+    var date2 = tools.weekIndexToDate(index);
+
+    var week = moment(date).isoWeek();
+    var week2 = moment(date2).isoWeek();
+
+    expect(week, date).to.equal(week2);
+  }
+
+  it('works for 26.2.2016', () => {
+    checkDate(new Date(2016, 1, 26));
+  });
+
+
+  it('works for all hours since unix epoch', () => {
+    var hoursUntilNow = moment().diff(moment(0), 'hours');
+    _.range(1, hoursUntilNow).forEach(hours => {
+      var date = moment(0).add(hours, 'hours').toDate();
+      checkDate(date);
+    });
+  });
+
+});
+
+
+describe('monthIndex', function() {
+
+  this.timeout(1000*120);
+
+  function checkDate(date) {
+    var index = tools.dateToMonthIndex(date);
+    var date2 = tools.monthIndexToDate(index);
+
+    var month = moment(date).month();
+    var month2 = moment(date2).month();
+
+    expect(month, date).to.equal(month2);
+  }
+
+  it('works for 26.2.2016', () => {
+    checkDate(new Date(2016, 1, 26));
+  });
+
+  it('works for all hours since unix epoch', () => {
+    var hoursUntilNow = moment().diff(moment(0), 'hours');
+    _.range(1, hoursUntilNow).forEach(hours => {
+      var date = moment(0).add(hours, 'hours').toDate();
+      checkDate(date);
+    });
+  });
+
+});
+
+describe('dayIndex', function() {
+
+  this.timeout(1000*120);
+
+  function checkDate(date) {
+    var index = tools.dateToDayIndex(date);
+    var date2 = tools.dayIndexToDate(index);
+
+    var day = moment(date).month();
+    var day2 = moment(date2).month();
+
+    expect(day, date).to.equal(day2);
+  }
+
+  it('works for 26.2.2016', () => {
+    checkDate(new Date(2016, 1, 26));
+  });
+
+  it('works for all hours since unix epoch', () => {
+    var hoursUntilNow = moment().diff(moment(0), 'hours');
+    _.range(1, hoursUntilNow).forEach(hours => {
+      var date = moment(0).add(hours, 'hours').toDate();
+      checkDate(date);
+    });
+  });
+
+});
+
 
 

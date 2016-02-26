@@ -1,6 +1,7 @@
 
 var Combinatorics = require('js-combinatorics');
 var _ = require('lodash');
+var moment = require('moment');
 
 
 
@@ -104,9 +105,52 @@ function uniqValues(arr, accessor) {
   return _.uniqBy(arr, accessor).map(accessor);
 }
 
+
+function dateToDayIndex(date) {
+  var epochFirstDay = moment(0).startOf('day');
+  var dateFirstDay = moment(date).startOf('day');
+  return dateFirstDay.diff(epochFirstDay, 'days');
+}
+
+function dayIndexToDate(dayIndex) {
+  var epochFirstDay = moment(0).startOf('day');
+  return epochFirstDay.add(dayIndex, 'days').toDate();
+}
+
+function dateToWeekIndex(date) {
+  var epochFirstDay = moment(0).startOf('isoWeek');
+  var dateFirstDay = moment(date).startOf('isoWeek');
+  return dateFirstDay.diff(epochFirstDay, 'weeks');
+}
+
+function weekIndexToDate(weekIndex) {
+  var epochFirstDay = moment(0).startOf('isoWeek');
+  return epochFirstDay.add(weekIndex, 'weeks').toDate();
+}
+
+function dateToMonthIndex(date) {
+  var epochFirstDay = moment(0).startOf('month');
+  var dateFirstDay = moment(date).startOf('month');
+  return dateFirstDay.diff(epochFirstDay, 'months');
+}
+
+function monthIndexToDate(monthIndex) {
+  var epochFirstDay = moment(0).startOf('month');
+  return epochFirstDay.add(monthIndex, 'months').toDate();
+}
+
 function excelDateToJSDate(date) {
   return new Date(Math.round((date - 25569)*86400*1000));
 }
+
+
+module.exports.dateToDayIndex = dateToDayIndex;
+module.exports.dayIndexToDate = dayIndexToDate;
+module.exports.dateToWeekIndex = dateToWeekIndex;
+module.exports.weekIndexToDate = weekIndexToDate;
+module.exports.dateToMonthIndex = dateToMonthIndex;
+module.exports.monthIndexToDate = monthIndexToDate;
+
 module.exports.uniqValues = uniqValues;
 module.exports.span = span;
 module.exports.maxValue = maxValue;
