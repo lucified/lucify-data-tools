@@ -125,9 +125,34 @@ describe('fillForProperties', () => {
     expect(_.find(ret, item => item.key1 == 'C' && item.key2 == '2' && item.key3 == 'Y'), 4).to.be.undefined;
   });
 
+});
 
+describe('minValue', () => {
+  it('works', () => {
+    var arr = [{a: 5, b: 6}, {a: 2, b: 7}, {a: 7, b: 8}];
+    expect(tools.minValue(arr, item => item.a)).to.equal(2);
+    expect(tools.minValue(arr, item => item.b)).to.equal(6);
+  });
 });
 
 
+describe('maxValue', () => {
+  it('works', () => {
+    var arr = [{a: 5, b: 6}, {a: 2, b: 7}, {a: 7, b: 8}];
+    expect(tools.maxValue(arr, item => item.a)).to.equal(7);
+    expect(tools.maxValue(arr, item => item.b)).to.equal(8);
+  });
+});
+
+
+describe('span', () => {
+  it('works', () => {
+    var arr = [{a: 5, b: 6}, {a: 2, b: 7}, {a: 7, b: 8}];
+    expect(tools.span(arr, item => item.a)[0]).to.equal(2);
+    expect(tools.span(arr, item => item.a)[1]).to.equal(7);
+    expect(tools.span(arr, item => item.b)[0]).to.equal(6);
+    expect(tools.span(arr, item => item.b)[1]).to.equal(8);
+  });
+});
 
 

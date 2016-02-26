@@ -2,6 +2,8 @@
 var Combinatorics = require('js-combinatorics');
 var _ = require('lodash');
 
+
+
 /*
  * Find out which combinations of specified
  * property values do not exist in `data`
@@ -86,8 +88,26 @@ function fillForProperties(data, props, objTemplate, filter) {
   return d;
 }
 
+function maxValue(arr, accessor) {
+  return accessor(_.maxBy(arr, accessor));
+}
 
+function minValue(arr, accessor) {
+  return accessor(_.minBy(arr, accessor));
+}
 
+function span(arr, accessor) {
+  return [minValue(arr, accessor), maxValue(arr, accessor)];
+}
+
+function uniqValues(arr, accessor) {
+  return _.uniqBy(arr, accessor).map(accessor);
+}
+
+module.exports.uniqValues = uniqValues;
+module.exports.span = span;
+module.exports.maxValue = maxValue;
+module.exports.minValue = minValue;
 module.exports.fillForProperties = fillForProperties;
 module.exports.missingCombinations = missingCombinations;
 
