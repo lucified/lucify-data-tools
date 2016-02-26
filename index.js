@@ -38,16 +38,22 @@ function missingCombinations(data, props) {
 
 /*
  * Make sure data array has entries for all
- * combinations of specified properties
+ * combinations of specified property values,
+ * filling the array with new entries if necessary.
  *
- * props is array of property definitions which are
+ * @param {Array} props - array of property definitions which are
  * expected to exist. Each object in the array has
  * the following attributes:
  *
- *    key        -- data object attribute name
- *    valueRange -- range of values expected for key
+ *   key - data object attribute name
+ *   valueRange - range of values expected for key
+ *
+ * @param {Object} objTemplate - template for new entries
+ *
+ * @param {bool} filter - set to true to filter out any entries
+ *
  */
-function fillForProperties(data, props, valueAttr, missingValue, filter) {
+function fillForProperties(data, props, objTemplate, filter) {
 
   if (!Array.isArray(data)) {
     throw new TypeError('data should be an array');
@@ -56,12 +62,11 @@ function fillForProperties(data, props, valueAttr, missingValue, filter) {
   var d = data.slice();
   var missing = missingCombinations(d, props);
   missing.forEach(item => {
-    var obj = {};
+    var obj = _.cloneDeep(objTemplate);
     var index = 0;
     item.forEach(item => {
       obj[props[index].key] = item;
       index++;
-      obj[valueAttr] = missingValue;
     });
     d.push(obj);
     return true;

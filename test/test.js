@@ -97,7 +97,7 @@ describe('fillForProperties', () => {
   it('works when not filtering', () => {
 
     var d = deepcopy(data);
-    var ret = tools.fillForProperties(d, properties, 'count', 0);
+    var ret = tools.fillForProperties(d, properties, {'count': 0});
 
     expect(ret).to.have.length(10);
 
@@ -112,7 +112,7 @@ describe('fillForProperties', () => {
   it('works when filtering', () => {
 
     var d = deepcopy(data);
-    var ret = tools.fillForProperties(d, properties, 'count', 0, true);
+    var ret = tools.fillForProperties(d, properties, {'count': 0}, true);
 
     expect(ret).to.have.length(8);
 
