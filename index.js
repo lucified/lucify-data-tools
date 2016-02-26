@@ -104,6 +104,9 @@ function uniqValues(arr, accessor) {
   return _.uniqBy(arr, accessor).map(accessor);
 }
 
+function excelDateToJSDate(date) {
+  return new Date(Math.round((date - 25569)*86400*1000));
+}
 module.exports.uniqValues = uniqValues;
 module.exports.span = span;
 module.exports.maxValue = maxValue;
@@ -111,3 +114,4 @@ module.exports.minValue = minValue;
 module.exports.fillForProperties = fillForProperties;
 module.exports.missingCombinations = missingCombinations;
 
+module.exports.excelDateToJSDate = excelDateToJSDate;
