@@ -157,6 +157,26 @@ describe('span', () => {
 
 
 
+describe('uniqValues', () => {
+  it('works', () => {
+
+    var arr = [{a: 5, b: 6}, {a: 2, b: 7}, {a: 7, b: 8}, {a: 7, b: 6}];
+
+    expect(tools.uniqValues(arr, item => item.a)[0]).to.equal(5);
+    expect(tools.uniqValues(arr, item => item.a)[1]).to.equal(2);
+    expect(tools.uniqValues(arr, item => item.a)[2]).to.equal(7);
+
+    expect(tools.uniqValues(arr, item => item.b)[0]).to.equal(6);
+    expect(tools.uniqValues(arr, item => item.b)[1]).to.equal(7);
+    expect(tools.uniqValues(arr, item => item.b)[2]).to.equal(8);
+
+  });
+});
+
+
+
+
+
 
 describe('weekIndex', function() {
 
