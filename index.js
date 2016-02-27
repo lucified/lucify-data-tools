@@ -173,6 +173,16 @@ function formatWeekIndex(weekIndex) {
   return formatDateAsWeek(weekIndexToDate(weekIndex));
 }
 
+function firstWeekIndexOfYear(year) {
+  var mom = moment([year, 0, 1]);
+  while (mom.isoWeek() != 1) {
+    mom.add(1, 'days');
+  }
+  return dateToWeekIndex(mom.toDate());
+}
+
+
+module.exports.firstWeekIndexOfYear = firstWeekIndexOfYear;
 module.exports.formatWeekIndex = formatWeekIndex;
 module.exports.formatDateAsWeek = formatDateAsWeek;
 
