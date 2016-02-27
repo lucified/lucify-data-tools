@@ -22,6 +22,18 @@ function missingCombinations(data, props) {
     throw new TypeError('data should be an array');
   }
 
+  props.forEach(prop => {
+    if (!prop.key) {
+      throw new TypeError('prop missing key');
+    }
+    if (!Array.isArray(prop.valueRange)) {
+      throw new TypeError(`Invalid valueRange for prop with key ${prop.key}`);
+    }
+    if (prop.valueRange.length == 0) {
+      throw new TypeError(`Length is zero for valueRange with prop ${prop.key}`);
+    }
+  });
+
   var params = props.map(item => item.valueRange);
   var expectedCombinations = Combinatorics.cartesianProduct.apply(null, params).toArray();
 
@@ -60,6 +72,10 @@ function fillForProperties(data, props, objTemplate, filter) {
 
   if (!Array.isArray(data)) {
     throw new TypeError('data should be an array');
+  }
+
+  if (!Array.isArray(props)) {
+    throw new TypeError('props should be an array');
   }
 
   var d = data.slice();
