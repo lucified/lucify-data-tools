@@ -143,6 +143,22 @@ function excelDateToJSDate(date) {
   return new Date(Math.round((date - 25569)*86400*1000));
 }
 
+/*
+ * Format data as week in format [week]/[year], e.g. 1/2015
+ *
+ * Uses ISO weeks and ISO week years.
+ */
+function formatDateAsWeek(date) {
+  var mom = moment(date);
+  return `${mom.isoWeek()}/${mom.isoWeekYear()}`;
+}
+
+function formatWeekIndex(weekIndex) {
+  return formatDateAsWeek(weekIndexToDate(weekIndex));
+}
+
+module.exports.formatWeekIndex = formatWeekIndex;
+module.exports.formatDateAsWeek = formatDateAsWeek;
 
 module.exports.dateToDayIndex = dateToDayIndex;
 module.exports.dayIndexToDate = dayIndexToDate;
