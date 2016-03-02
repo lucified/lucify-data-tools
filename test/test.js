@@ -2,7 +2,7 @@
 var expect = require('chai').expect;
 var _ = require('lodash');
 var deepcopy = require('deepcopy');
-var tools = require('../index.js');
+var tools = require('../src');
 var moment = require('moment');
 
 
