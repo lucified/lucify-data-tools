@@ -173,6 +173,27 @@ function formatWeekIndex(weekIndex) {
   return formatDateAsWeek(weekIndexToDate(weekIndex));
 }
 
+
+function formatDateAsMonth(date) {
+  var mom = moment(date);
+  return `${mom.month() + 1}/${mom.year()}`;
+}
+
+function formatMonthIndex(monthIndex) {
+  return formatDateAsMonth(monthIndexToDate(monthIndex));
+}
+
+
+function firstDayIndexOfYear(year) {
+  var mom = moment([year, 0, 1]);
+  return dateToDayIndex(mom.toDate());
+}
+
+function firstMonthIndexOfYear(year) {
+  var mom = moment([year, 0, 1]);
+  return dateToMonthIndex(mom.toDate());
+}
+
 function firstWeekIndexOfYear(year) {
   var mom = moment([year, 0, 1]);
   while (mom.isoWeek() != 1) {
@@ -181,9 +202,13 @@ function firstWeekIndexOfYear(year) {
   return dateToWeekIndex(mom.toDate());
 }
 
-
+module.exports.firstDayIndexOfYear = firstDayIndexOfYear;
 module.exports.firstWeekIndexOfYear = firstWeekIndexOfYear;
+module.exports.firstMonthIndexOfYear = firstMonthIndexOfYear;
+
 module.exports.formatWeekIndex = formatWeekIndex;
+module.exports.formatMonthIndex = formatMonthIndex;
+
 module.exports.formatDateAsWeek = formatDateAsWeek;
 
 module.exports.dateToDayIndex = dateToDayIndex;
